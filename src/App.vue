@@ -13,6 +13,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.5;
+    font-size: 16px;
     font-family: $font-hei;
     color: #333333;
   }
