@@ -1,15 +1,28 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import clone from '@/lib/clone';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-export default new Vuex.Store({
+const store = new Vuex.Store({
   state: {
+    recordList: [] as RecordItem[]
   },
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    fetchRecords(state) {
+      state.recordList = JSON.parse(window.localStorage.getItem('recordList') || '[]') as RecordItem[];
+    },
+    createRecord(state, record) {
+      const record2 = clone(record);
+      record2.createdAt = new Date();
+      state.recordList.push(record2);
+
+      store.commit('saveRecord')
+    },
+    saveRecord(state) {
+      return window.localStorage.setItem('recordList', JSON.stringify(state.recordList));
+    },
   }
-})
+});
+
+export default store;
