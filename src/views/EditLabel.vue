@@ -32,6 +32,7 @@
     }
 
     created() {
+      this.$store.commit('fetchTags'); // 防止刷新后，数据丢失
       this.$store.commit('setCurrentTag', this.$route.params.id);
 
       if (!this.tag) {
@@ -41,19 +42,15 @@
 
     update(name: string) {
       if (this.tag) {
-        // TODO
-        // store.updateTag(this.tag.id, name);
+        this.$store.commit('updateTag', {
+          id: this.tag.id, name
+        });
       }
     }
 
     remove() {
       if (this.tag) {
-        // TODO
-        // if (store.removeTag(this.tag.id)) {
-        //   this.$router.back();
-        // } else {
-        //   window.alert('删除失败');
-        // }
+        this.$store.commit('removeTag', this.tag.id);
       }
     }
 
