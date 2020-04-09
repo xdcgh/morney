@@ -18,7 +18,7 @@
     @Prop({default: ''}) readonly value!: string;
 
     @Prop({required: true}) fieldName!: string;
-    @Prop() placeholder?: string;
+    @Prop(String) placeholder?: string;
 
     onValueChanged(value: stiring) {
       this.$emit('update:value', value);

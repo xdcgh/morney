@@ -31,7 +31,7 @@
 
     inputContent(event: MouseEvent) {
       const button = (event.target as HTMLButtonElement);
-      const input = button.textContent as sring;
+      const input = button.textContent as string;
 
       if (this.output.length === 16) {
         return;
