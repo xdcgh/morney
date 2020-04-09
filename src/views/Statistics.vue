@@ -3,7 +3,7 @@
     <Tabs class-prefix="type"
           :data-source="recordTypeList" :value.sync="type"/>
 
-    <ol>
+    <ol v-if="groupedList.length > 0">
       <li v-for="(group, index) in groupedList" :key="index">
         <h3 class="title">
           {{beautify(group.title)}}
@@ -19,6 +19,10 @@
         </ol>
       </li>
     </ol>
+
+    <div v-else class="noResult">
+      目前没有相关数据
+    </div>
   </Layout>
 </template>
 
@@ -97,7 +101,7 @@
     }
 
     tagString(tags: Tag[]) {
-      return tags.length === 0 ? '无' : tags.join(',');
+      return tags.length === 0 ? '无' : tags.map(t => t.name).join('，');
     }
 
     beautify(string: string) {
@@ -157,5 +161,10 @@
     margin-right: auto;
     margin-left: 16px;
     color: #999999;
+  }
+
+  .noResult {
+    padding: 16px;
+    text-align: center;
   }
 </style>
