@@ -20,7 +20,7 @@
     @Prop({required: true}) fieldName!: string;
     @Prop(String) placeholder?: string;
 
-    onValueChanged(value: stiring) {
+    onValueChanged(value: string) {
       this.$emit('update:value', value);
     }
   }
